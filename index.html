@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>SEARCH ME</h1>
+    <form>
+      <input type="text" name="search" class="sinput" />
+      <button class="sbutton">SEARCH</button>
+    </form>
+    <h2 class="meaning"></h2>
+
+    <script>
+      let sinput = document.querySelector(".sinput");
+      let sbutton = document.querySelector(".sbutton");
+      let meaning= document.querySelector(".meaning");
+      sbutton.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log(sinput.value)
+        const datas = async () => {
+          const response = await fetch(`http://localhost:3000/search/${sinput.value}`);
+          const data = await response.json();
+          meaning.innerHTML = data;
+
+        };
+        datas();
+      });
+    </script>
+  </body>
+</html>
