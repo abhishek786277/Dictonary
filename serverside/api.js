@@ -1,11 +1,15 @@
 const express = require("express");
+var cors = require("cors");
 const path = require("path");
 const port = 3000;
 const axios = require("axios");
 
 const app = express();
+app.use(cors())
 
-const absoluepath = path.join(__dirname, "../index.html");
+app.use(express.static(path.join(__dirname, "../public")));
+
+const absoluepath = path.join(__dirname, "../public/index.html");
 
 app.get("/", (req, res) => {
   res.sendFile(absoluepath);
